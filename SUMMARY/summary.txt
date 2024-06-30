@@ -1,0 +1,63 @@
+
+Separate the js code - put js files in the src , and other assets in the public folder 
+
+
+KEY NOTES: 
+
+
+
+-------------------------------------
+    PARCEL PRODUCTION MODE VS DEVELOPMENT MODE
+----------------------------------
+       -  RUNNING PARCEL DEVELOPMENT MODE:
+                
+                -  npm start 
+                - (or parcel public/index.html)
+
+            KEY NOTES:
+
+                - Parcel will not write output to disk , instead it serves 
+                 the compiled assets directlry from memory . 
+                 This approach speed up the Development and supports HMR - whithout generating physical files! 
+                 Parcel will handles the bundling and serves the compiled assets through it's dev sever
+
+            
+
+
+        PRODUCTION MODE: 
+
+            - npm run build
+            - (or parcel build public/index/html) 
+
+        When building the project for production , Parcel compiles and optimize my 
+        app into the dist directory by default! GENERATE PHYSICAL FILES 
+
+       - Running PARCEL in PRODUCTION MODE: 
+                
+                -npm run build 
+                - (or parcel build public/index.html)
+
+        
+        - By deault Parcel will compile the application into the dist folder! 
+          IN BOTH CASES - but the bundlers will be different
+
+
+                
+                
+
+
+--------------------------------------------------------------
+    1. Serving Static Assets: Production vs Development
+----------------------------------------------------------------
+     - In production(NODE_ENV === 'production')
+            - serves static files(like CSS, js, images) 
+               from client/dist directory using express.static  
+     
+     - In Development : 
+            - For all requests (*) , routes them to the index.html file in the client dist directory
+     EXPLANATION: 
+     ESSENTIAL TO FOR DELIVERING ASSETS THAT DONT NEED TO BE DYNAMICALLY GENERATED FOR EACH REQUEST
+
+
+
+
