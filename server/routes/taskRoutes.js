@@ -1,7 +1,13 @@
-const express  =require('express')
+const taskController = require("../controllers/taskController");
+const authController = require("../controllers/authController");
+const express = require("express");
 
-const router = express.Router() ; 
+const router = express.Router();
 
-module.exports = router; 
+router.use(authController.protect);
+router
+  .route("/")
+  .get(taskController.getAllTasks)
+  .post(taskController.createTask);
 
-
+module.exports = router;

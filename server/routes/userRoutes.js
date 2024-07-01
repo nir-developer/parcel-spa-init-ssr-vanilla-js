@@ -1,29 +1,29 @@
+const express = require("express");
 
-const express = require('express')
+const authController = require("../controllers/authController");
 
-const authController = require('../controllers/authController')
+const path = require("path");
 
+const router = express.Router();
 
-const path = require('path')
+router.post("/signup", authController.uploadUserPhoto, authController.signup);
 
-
-const router = express.Router(); 
-
-router.post('/signup', authController.uploadUserPhoto, authController.signup)
-
-router.post('/login', authController.login)
-
+router.post("/login", authController.login);
 
 //WITH OR WITHOUT PROTECT???????????????????????
-router.get('/checkLoggedIn',authController.protect,  authController.checkLoggedIn)
+router.get(
+  "/checkLoggedIn",
+  authController.protect,
+  authController.checkLoggedIn,
+);
 
-router.post('/logout', authController.protect ,authController.logout)
+router.post("/logout", authController.protect, authController.logout);
 
 //USER INFO - WILL BE CALLED ON INIT CLIENT APP
-router.get('/me', authController.getMe)
+router.get("/me", authController.getMe);
 
 //MULTER AT THE BEGINNING!! MOVE THIS CODE TO THE AUTH CONTROLLER
-// const multer = require('multer'); 
+// const multer = require('multer');
 
 // //SPECIFY THE FOLDER TO STORE THE UPLOADED USER UPLOADS IMAGES
 // //NOTE - WITHOUT SPECIFY THE DEST - MULTER WILL USE IN MEMORY !
@@ -39,21 +39,12 @@ router.get('/me', authController.getMe)
 //   }
 // });
 
-
 // const upload = multer({ storage: storage });
 
 //////////////////////////////////////////
 
-
-
-
-
-
-//the parameter passed to single is the 'name' attribute of the HTML(I used formData.append() - so it added this attribute!) 
+//the parameter passed to single is the 'name' attribute of the HTML(I used formData.append() - so it added this attribute!)
 
 // router.post('/login', login);
 
-
-module.exports = router; 
-
-
+module.exports = router;
